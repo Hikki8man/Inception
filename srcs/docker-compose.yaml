@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  nginx:
+    build: /requirements/nginx
+    image: nginx:42
+    ports:
+      - "8080:80"
+    restart: always
