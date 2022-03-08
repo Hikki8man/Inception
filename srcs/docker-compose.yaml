@@ -5,5 +5,5 @@ services:
     build: /requirements/nginx
     image: nginx:42
     ports:
-      - "8080:80"
+      - "443:443"
     restart: always
