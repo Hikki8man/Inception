@@ -2,8 +2,33 @@ version: '3'
 
 services:
   nginx:
-    build: /requirements/nginx
+    container_name: nginx
+    build: ./requirements/nginx
     image: nginx:42
     ports:
       - "443:443"
+    networks:
+      - Inception
     restart: always
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb:42
+    ports:
+      - "3306:3306"
+    networks:
+      - Inception
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress:42
+    ports:
+      - "9000:9000"
+    networks:
+      - Inception
+
+networks: 
+  Inception:
+    name: Inception

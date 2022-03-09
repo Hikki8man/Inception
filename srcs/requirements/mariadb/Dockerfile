@@ -5,7 +5,7 @@ RUN apt-get update -y && apt-get upgrade -y &&\
 	service mysql start &&\
 	mariadb -e "create database wordpress" &&\
 	mariadb -e "create user groot" &&\
-	mariadb -e "create user jchevet"
+	mariadb -e "create user $MARIADB_USER"
 
 EXPOSE 3306
 
