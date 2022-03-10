@@ -2,7 +2,7 @@ server {
 	listen 443 ssl default_server;
 	server_name _;
 	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
+	index index.php index.html index.htm index.nginx-debian.html;
 
 	ssl on;
 	ssl_certificate /etc/nginx/ssl/ca.crt;
@@ -10,10 +10,19 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
 
 	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
 	}
+
+	location ~ \.php$ {
+                try_files $uri /index.php =404;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass wordpress:9000;
+                fastcgi_index index.php;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_param PATH_INFO $fastcgi_path_info;
+        }
+
 }
 
 
