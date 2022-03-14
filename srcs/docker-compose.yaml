@@ -20,7 +20,9 @@ services:
     build:
       context: ./requirements/mariadb
       args:
-        - DB_ROOT_PWD=$DB_ROOT_PWD 
+        ROOT_PWD: ${DB_ROOT_PWD}
+        USER: ${DB_USER}
+        USER_PWD: ${DB_USER_PWD}
     image: mariadb:42
     volumes:
       - dbdata:/var/lib/mysql
@@ -47,13 +49,13 @@ volumes:
   wordpress:
     name: wordpress
     driver_opts:
-      device: wordpressdata
+      device: /Users/jchevet/mygit/Inception/srcs/wordpressdata
       type: none
       o: bind
   dbdata:
     name: dbdata
     driver_opts:
-      device: dbdata
+      device: /Users/jchevet/mygit/Inception/srcs/dbdata
       type: none
       o: bind
 
