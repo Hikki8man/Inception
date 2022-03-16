@@ -3,7 +3,6 @@ FROM debian:buster
 RUN mkdir -p /etc/nginx/ssl &&\
 	apt-get update -y &&\
 	apt-get install -y openssl &&\
-	apt-get install -y vim &&\
  	apt-get install -y nginx
 
 WORKDIR /etc/nginx

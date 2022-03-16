@@ -35,11 +35,20 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     image: wordpress:42
-    environment:
-      - WORDPRESS_DB_HOST=mariadb:3306
-      - WORDPRESS_DB_NAME=wordpress
-      - WORDPRESS_DB_USER=jchevet
-      - WORDPRESS_DB_PASSWORD=pwd
+    env_file:
+      - .env
+    # environment:
+    #   - WORDPRESS_DB_HOST=$WORDPRESS_DB_HOST
+    #   - WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME
+    #   - WORDPRESS_DB_USER=$WORDPRESS_DB_USER
+    #   - WORDPRESS_DB_PASS=$WORDPRESS_DB_PASS
+
+    #   - WORDPRESS_ADMIN=$WORDPRESS_ADMIN
+    #   - WORDPRESS_ADMIN_PASSWORD=$WORDPRESS_ADMIN_PASSWORD
+    #   - WORDPRESS_ADMIN_EMAIL=$WORDPRESS_ADMIN_EMAIL
+    #   - WORDPRESS_USER=$WORDPRESS_USER
+    #   - WORDPRESS_USER_PWD=$WORDPRESS_USER_PWD
+    #   - WORDPRESS_USER_EMAIL=$WORDPRESS_USER_EMAIL
     volumes:
       - wordpress:/var/www/html
     networks:

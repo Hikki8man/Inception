@@ -5,8 +5,7 @@ ARG	USER
 ARG USER_PWD
 
 RUN apt-get update -y && apt-get upgrade -y &&\
-	apt-get install -y mariadb-server &&\
-	sed -i "28s/.*/bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
+	apt-get install -y mariadb-server
 
 RUN service mysql start && \
 	mariadb -e "ALTER USER root@'localhost' IDENTIFIED BY '$ROOT_PWD'; \
@@ -16,4 +15,4 @@ RUN service mysql start && \
 
 EXPOSE 3306
 
-CMD ["mysqld"]
+CMD ["mysqld", "--bind-address=0.0.0.0"]

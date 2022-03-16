@@ -11,25 +11,17 @@ EXPOSE 9000
 
 RUN sed -i '36s/.*/listen = wordpress:9000/' /etc/php/7.3/fpm/pool.d/www.conf
 
-WORKDIR /var/www/html
-
-COPY wordpress.tar.gz .
-
-RUN tar -xvf wordpress.tar.gz &&\
-	rm -rf wordpress.tar.gz
-
 WORKDIR /var/www/html/wordpress
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
 	chmod +x wp-cli.phar &&\
 	mv wp-cli.phar /usr/local/bin/wp
 
+RUN service php7.3-fpm start &&\
+	wp core download --allow-root
 
-COPY wp-config.php .
+COPY wp_launcher.sh .
 
-# RUN service php7.3-fpm start && wp core install --title=zebi --url=https://localhost --admin_user=jchevet --admin_email=johan@42.fr --allow-root
+RUN chmod +x wp_launcher.sh
 
-# RUN service php7.3-fpm start && wp user create johan johan@42.fr --user_pass=123456 --role=administrator --allow-root
-
-
-CMD service php7.3-fpm start && sleep infinity
+CMD sh wp_launcher.sh
