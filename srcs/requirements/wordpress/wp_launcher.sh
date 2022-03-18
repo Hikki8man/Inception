@@ -7,8 +7,8 @@ wp config create --dbname=$WORDPRESS_DB_NAME \
 				--dbhost=$WORDPRESS_DB_HOST \
 				--skip-check --allow-root
 
-wp core install --title=zebi \
-				--url=https://localhost \
+wp core install --title="LE TITRE" \
+				--url=$WORDPRESS_URL \
 				--admin_user=$WORDPRESS_ADMIN \
 				--admin_password=$WORDPRESS_ADMIN_PASSWORD \
 				--admin_email=$WORDPRESS_ADMIN_EMAIL \

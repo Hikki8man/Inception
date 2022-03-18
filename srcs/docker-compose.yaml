@@ -13,6 +13,7 @@ services:
       - wordpress:/var/www/html
     networks:
       - Inception
+    init: true
     restart: always
 
   mariadb:
@@ -28,6 +29,8 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - Inception
+    init: true
+    restart: always
 
   wordpress:
     depends_on:
@@ -53,20 +56,24 @@ services:
       - wordpress:/var/www/html
     networks:
       - Inception
+    init: true
+    restart: always
 
 volumes:
   wordpress:
     name: wordpress
+    driver: local
     driver_opts:
       device: /Users/jchevet/mygit/Inception/srcs/wordpressdata
-      type: none
-      o: bind
+      type: 'none'
+      o: 'bind'
   dbdata:
     name: dbdata
+    driver: local
     driver_opts:
       device: /Users/jchevet/mygit/Inception/srcs/dbdata
-      type: none
-      o: bind
+      type: 'none'
+      o: 'bind'
 
 networks: 
   Inception:
