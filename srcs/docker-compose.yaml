@@ -41,7 +41,7 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - Inception
     init: true
@@ -55,7 +55,7 @@ volumes:
       device: /home/jchevet/data/wp_data
       type: 'none'
       o: 'bind'
-  dbdata:
+  mariadb:
     name: db_data
     driver: local
     driver_opts:
