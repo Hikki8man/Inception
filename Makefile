@@ -1,6 +1,6 @@
 all:
-	mkdir -p srcs/dbdata
-	mkdir -p srcs/wordpressdata
+	mkdir -p /home/jchevet/data/db_data
+	mkdir -p /home/jchevet/data/wp_data
 	docker-compose -f srcs/docker-compose.yaml up -d
 
 build:
@@ -13,8 +13,8 @@ down:
 	docker-compose -f srcs/docker-compose.yaml down
 
 fclean:
-	rm -rf srcs/dbdata
-	rm -rf srcs/wordpressdata
+	rm -rf /home/jchevet/data/db_data
+	rm -rf /home/jchevet/data/wp_data
 	docker image rm -f nginx:42 wordpress:42 mariadb:42
 	docker-compose -f srcs/docker-compose.yaml down -v
 
