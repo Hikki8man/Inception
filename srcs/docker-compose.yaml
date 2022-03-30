@@ -48,14 +48,14 @@ services:
     restart: always
 
 volumes:
-  wordpress:
+  wp_data:
     name: wp_data
     driver: local
     driver_opts:
       device: /home/jchevet/data/wp_data
       type: 'none'
       o: 'bind'
-  mariadb:
+  db_data:
     name: db_data
     driver: local
     driver_opts:
