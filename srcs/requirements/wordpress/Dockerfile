@@ -4,8 +4,7 @@ RUN apt-get update -y &&\
 	apt-get upgrade -y &&\
 	apt-get install -y php-fpm &&\
 	apt-get install -y php-mysql &&\
-	apt-get install -y curl &&\
-	mkdir -p /var/www/html
+	apt-get install -y curl
 
 EXPOSE 9000
 
